@@ -5,8 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Browsers {
 
-    private static final String CHROME_DRIVER_PATH= "C:\\Users\\Admin\\chromedriver-win64\\chromedriver.exe";
-    private static final String YANDEX_DRIVER_PATH= "C:\\Users\\Admin\\chromedriver-win64\\yandexdriver.exe";
+    private static final String CHROME_DRIVER_PATH= "C:\\browser_driver\\chromedriver.exe";
+    private static final String YANDEX_DRIVER_PATH= "C:\\browser_driver\\yandexdriver.exe";
 
 
     public static WebDriver getDriver(){

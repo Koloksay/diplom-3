@@ -2,7 +2,6 @@ package src.main.java.site.nomoreparties.stellarburgers.po;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +16,7 @@ public class HeadPage {
     private By butChapter = By.cssSelector("div.tab_tab__1SPyG:nth-child(1)");
     private By saucesChapter = By.cssSelector("div.tab_tab__1SPyG:nth-child(2)");
     private By fillingsChapter = By.cssSelector("div.tab_tab__1SPyG:nth-child(3)");
+    private By activeChapter=By.cssSelector("div.tab_tab__1SPyG.tab_tab_type_current__2BEPc > span");
 
     private final By butText = By.xpath("//h2[text()='Булки']");
     private final By saucesText = By.xpath("//h2[text()='Соусы']");
@@ -85,6 +85,12 @@ public class HeadPage {
     public boolean isFillingsTextDisplayed() {
         WebElement header = driver.findElement(fillingsText);
         return header.isDisplayed();
+    }
+
+    @Step("Проверить какой текст в выбранном разделе")
+    public String getActiveChapter(){
+        WebElement active = driver.findElement(activeChapter);
+        return active.getText();
     }
 
     private void scrollToAndClick(By elementLocator) {

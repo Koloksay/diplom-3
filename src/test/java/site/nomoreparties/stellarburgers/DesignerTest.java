@@ -7,7 +7,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import site.nomoreparties.stellarburgers.data.ClientData;
 import site.nomoreparties.stellarburgers.data.ClientGenerator;
 import site.nomoreparties.stellarburgers.restClient.ClientClient;
@@ -16,6 +15,7 @@ import site.nomoreparties.stellarburgers.restClient.RegisterClient;
 import src.main.java.site.nomoreparties.stellarburgers.po.HeadPage;
 
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class DesignerTest {
@@ -24,7 +24,6 @@ public class DesignerTest {
     private ClientClient clientClient;
     private RegisterClient registerClient;
     private String bearerToken;
-    private WebDriverWait wait;
     private String email;
     private String name;
     private String password;
@@ -32,7 +31,6 @@ public class DesignerTest {
     @Before
     public void setup() {
         driver = Browsers.getDriver();
-        wait = new WebDriverWait(driver, 10);
         driver.get("https://stellarburgers.nomoreparties.site/");
 
         //создаём клиента
@@ -54,6 +52,7 @@ public class DesignerTest {
         HeadPage headPage = new HeadPage(driver);
         headPage.clickToFillingsChapter();
         assertTrue("Не виден ожидаемый текст'Начинки'",headPage.isFillingsTextDisplayed());
+        assertEquals("Начинки", headPage.getActiveChapter());
     }
 
     @Test
@@ -62,6 +61,7 @@ public class DesignerTest {
         HeadPage headPage = new HeadPage(driver);
         headPage.clickToSaucesChapter();
         assertTrue("Не виден ожидаемый текст'Соусы'",headPage.isSaucesTextDisplayed());
+        assertEquals("Соусы", headPage.getActiveChapter());
     }
 
     @Test
@@ -71,6 +71,7 @@ public class DesignerTest {
         headPage.clickToSaucesChapter();
         headPage.clickToButChapter();
         assertTrue("Не виден ожидаемый текст'Булки'",headPage.isSaucesTextDisplayed());
+        assertEquals("Булки", headPage.getActiveChapter());
     }
 
     @After
